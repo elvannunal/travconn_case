@@ -1,0 +1,15 @@
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/bin/Debug/net8.0/Hobbies.Application.deps.json
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/bin/Debug/net8.0/Hobbies.Application.dll
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/bin/Debug/net8.0/Hobbies.Application.pdb
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/bin/Debug/net8.0/Hobbies.Domain.dll
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/bin/Debug/net8.0/Hobbies.Domain.pdb
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/Hobbies.Application.csproj.AssemblyReference.cache
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/Hobbies.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/Hobbies.Application.AssemblyInfoInputs.cache
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/Hobbies.Application.AssemblyInfo.cs
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/Hobbies.Application.csproj.CoreCompileInputs.cache
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/Hobbies..3711AE29.Up2Date
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/Hobbies.Application.dll
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/refint/Hobbies.Application.dll
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/Hobbies.Application.pdb
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/Debug/net8.0/ref/Hobbies.Application.dll

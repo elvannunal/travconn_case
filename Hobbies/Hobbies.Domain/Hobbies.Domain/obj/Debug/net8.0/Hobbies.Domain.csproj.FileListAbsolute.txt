@@ -1,0 +1,11 @@
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/bin/Debug/net8.0/Hobbies.Domain.deps.json
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/bin/Debug/net8.0/Hobbies.Domain.dll
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/bin/Debug/net8.0/Hobbies.Domain.pdb
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/obj/Debug/net8.0/Hobbies.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/obj/Debug/net8.0/Hobbies.Domain.AssemblyInfoInputs.cache
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/obj/Debug/net8.0/Hobbies.Domain.AssemblyInfo.cs
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/obj/Debug/net8.0/Hobbies.Domain.csproj.CoreCompileInputs.cache
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/obj/Debug/net8.0/Hobbies.Domain.dll
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/obj/Debug/net8.0/refint/Hobbies.Domain.dll
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/obj/Debug/net8.0/Hobbies.Domain.pdb
+/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/obj/Debug/net8.0/ref/Hobbies.Domain.dll

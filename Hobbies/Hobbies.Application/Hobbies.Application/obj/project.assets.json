@@ -1,0 +1,94 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "Hobbies.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Hobbies.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Hobbies.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Hobbies.Domain/1.0.0": {
+      "type": "project",
+      "path": "../../Hobbies.Domain/Hobbies.Domain/Hobbies.Domain.csproj",
+      "msbuildProject": "../../Hobbies.Domain/Hobbies.Domain/Hobbies.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "Hobbies.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/elvanunal/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/Hobbies.Application.csproj",
+      "projectName": "Hobbies.Application",
+      "projectPath": "/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/Hobbies.Application.csproj",
+      "packagesPath": "/Users/elvanunal/.nuget/packages/",
+      "outputPath": "/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Application/Hobbies.Application/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/elvanunal/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/Hobbies.Domain.csproj": {
+              "projectPath": "/Users/elvanunal/Desktop/TravconnCase/Hobbies/Hobbies.Domain/Hobbies.Domain/Hobbies.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
