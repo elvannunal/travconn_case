@@ -10,18 +10,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS - Sadece Gateway'den gelen isteklere izin veririz
+
+// CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("GatewayOnly", policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:5000") 
+        policy.AllowAnyOrigin()
             .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials();
+            .AllowAnyHeader();
     });
 });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,7 +32,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("GatewayOnly");
+app.UseCors("AllowAll");
 
 app.MapControllers();
 

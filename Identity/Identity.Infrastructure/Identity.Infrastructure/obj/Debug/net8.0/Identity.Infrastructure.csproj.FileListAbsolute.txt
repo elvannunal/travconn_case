@@ -17,3 +17,4 @@
 /Users/elvanunal/Desktop/TravconnCase/Identity/Identity.Infrastructure/Identity.Infrastructure/obj/Debug/net8.0/Identity.Infrastructure.pdb
 /Users/elvanunal/Desktop/TravconnCase/Identity/Identity.Infrastructure/Identity.Infrastructure/obj/Debug/net8.0/Identity.Infrastructure.genruntimeconfig.cache
 /Users/elvanunal/Desktop/TravconnCase/Identity/Identity.Infrastructure/Identity.Infrastructure/obj/Debug/net8.0/ref/Identity.Infrastructure.dll
+/Users/elvanunal/Desktop/TravconnCase/Identity/Identity.Infrastructure/Identity.Infrastructure/obj/Debug/net8.0/Identity.Infrastructure.sourcelink.json

@@ -1,9 +1,9 @@
 using Identity.Application.Interfaces;
 using Identity.Domain.Entities;
-
-namespace Identity.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
+namespace Identity.Infrastructure.Data;
 
 public class ApplicationDbContext :DbContext, IApplicationDbContext
 {  

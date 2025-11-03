@@ -22,15 +22,15 @@ var jwtSettings = new JwtSettings();
 builder.Configuration.GetSection(nameof(JwtSettings)).Bind(jwtSettings);
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(nameof(JwtSettings)));
 
-// CORS - Sadece Gateway'den gelen isteklere izin veririz
+
+// CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("GatewayOnly", policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:5000") 
-              .AllowAnyMethod()
-              .AllowAnyHeader()
-              .AllowCredentials();
+        policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
 });
 
@@ -76,7 +76,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // CORS middleware
-app.UseCors("GatewayOnly");
+app.UseCors("AllowAll");
 
 app.UseAuthentication(); 
 app.UseAuthorization();

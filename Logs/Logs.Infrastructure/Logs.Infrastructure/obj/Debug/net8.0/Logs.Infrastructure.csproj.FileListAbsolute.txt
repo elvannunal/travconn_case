@@ -17,3 +17,4 @@
 /Users/elvanunal/Desktop/TravconnCase/Logs/Logs.Infrastructure/Logs.Infrastructure/obj/Debug/net8.0/ref/Logs.Infrastructure.dll
 /Users/elvanunal/Desktop/TravconnCase/Logs/Logs.Infrastructure/Logs.Infrastructure/bin/Debug/net8.0/Logs.Infrastructure.runtimeconfig.json
 /Users/elvanunal/Desktop/TravconnCase/Logs/Logs.Infrastructure/Logs.Infrastructure/obj/Debug/net8.0/Logs.Infrastructure.genruntimeconfig.cache
+/Users/elvanunal/Desktop/TravconnCase/Logs/Logs.Infrastructure/Logs.Infrastructure/obj/Debug/net8.0/Logs.Infrastructure.sourcelink.json

@@ -13,3 +13,4 @@
 /Users/elvanunal/Desktop/TravconnCase/Identity/Identity.Application/Identity.Application/obj/Debug/net8.0/refint/Identity.Application.dll
 /Users/elvanunal/Desktop/TravconnCase/Identity/Identity.Application/Identity.Application/obj/Debug/net8.0/Identity.Application.pdb
 /Users/elvanunal/Desktop/TravconnCase/Identity/Identity.Application/Identity.Application/obj/Debug/net8.0/ref/Identity.Application.dll
+/Users/elvanunal/Desktop/TravconnCase/Identity/Identity.Application/Identity.Application/obj/Debug/net8.0/Identity.Application.sourcelink.json
