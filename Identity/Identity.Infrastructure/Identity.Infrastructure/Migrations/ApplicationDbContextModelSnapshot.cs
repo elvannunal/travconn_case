@@ -30,21 +30,26 @@ namespace Identity.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
 
                     b.HasKey("Id");
 
@@ -57,7 +62,7 @@ namespace Identity.Infrastructure.Migrations
                             Email = "user@gmail.com",
                             FirstName = "User1 LastName",
                             LastName = "User1 Lastname",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJtnVaDv1S4qlEXx1npQMw46zdqk9ffwKhUdeMIVZbOMcZPQ4fhkOn1BmzjKVV+79A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOgm3hO3Iw42LvL7Oz0GDaPpHIyi5Luk1qxrFwvFot+fMVW3RsKb9budLYq2h1yx7Q==",
                             Role = "Admin"
                         },
                         new
@@ -66,7 +71,7 @@ namespace Identity.Infrastructure.Migrations
                             Email = "user2@gmail.com",
                             FirstName = "User2 LastName",
                             LastName = "User2 Lastname",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE5Ghw4I+CNGzhnLBuxGjNd31hCoJhPVbAldgwEuDR+8txFzStAdmlifNcImm6tJdQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEuqy+k25QmeoyCc3HtlY640H/tpv7uJoiNAfqOX9EN8LVdOjGSmFdp9JJtru8mjbg==",
                             Role = "User"
                         },
                         new
@@ -75,7 +80,7 @@ namespace Identity.Infrastructure.Migrations
                             Email = "user3@gmail.com",
                             FirstName = "User3 LastName",
                             LastName = "User3 Lastname",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEGYGA/9/8GlcunfYl7L4pC2YZ6t70pU9zoMhp8x4D3BT8yfalIPYP8cnI3jvHCzbw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEClk2HrEYI+xitJhIdqQSwwYzTtVSYuomNHaGlghbPINTbtYs+YWQL+92apPJq7znw==",
                             Role = "User"
                         });
                 });

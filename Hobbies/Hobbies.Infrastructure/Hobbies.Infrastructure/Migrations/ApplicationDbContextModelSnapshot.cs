@@ -24,11 +24,9 @@ namespace Hobbies.Infrastructure.Migrations
 
             modelBuilder.Entity("Hobbies.Domain.Entites.Hobby", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -55,11 +53,9 @@ namespace Hobbies.Infrastructure.Migrations
 
             modelBuilder.Entity("Hobbies.Domain.Entites.Log", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("EntityData")
                         .IsRequired()
@@ -97,13 +93,14 @@ namespace Hobbies.Infrastructure.Migrations
                     b.ToTable("Logs");
                 });
 
-            modelBuilder.Entity("Hobbies.Domain.Entites.UserHobby", b =>
+            modelBuilder.Entity("Hobbies.Domain.Entities.UserHobby", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("uuid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.Property<Guid>("BaseHobbyId")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -126,18 +123,18 @@ namespace Hobbies.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HobbyId");
+                    b.HasIndex("BaseHobbyId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("UserHobbies");
                 });
 
-            modelBuilder.Entity("Hobbies.Domain.Entites.UserHobby", b =>
+            modelBuilder.Entity("Hobbies.Domain.Entities.UserHobby", b =>
                 {
                     b.HasOne("Hobbies.Domain.Entites.Hobby", "Hobby")
                         .WithMany()
-                        .HasForeignKey("HobbyId")
+                        .HasForeignKey("BaseHobbyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

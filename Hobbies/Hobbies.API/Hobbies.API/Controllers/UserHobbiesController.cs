@@ -30,7 +30,7 @@ public class UserHobbiesController : ControllerBase
     }
     
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetByIdUserHobby(int id)
+    public async Task<IActionResult> GetByIdUserHobby(Guid id)
     {
         try
         {
@@ -66,7 +66,7 @@ public class UserHobbiesController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUserHobby(int id, [FromBody] UpdateUserHobbyDto updateUserHobbyDto)
+    public async Task<IActionResult> UpdateUserHobby(Guid id, [FromBody] UpdateUserHobbyDto updateUserHobbyDto)
     {
         try
         {
@@ -88,7 +88,7 @@ public class UserHobbiesController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUserHobby(int id)
+    public async Task<IActionResult> DeleteUserHobby(Guid id)
     {
         try
         {

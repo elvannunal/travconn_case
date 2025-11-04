@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -16,8 +15,7 @@ namespace Hobbies.Infrastructure.Migrations
                 name: "Hobbies",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -32,8 +30,7 @@ namespace Hobbies.Infrastructure.Migrations
                 name: "Logs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Operation = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     EntityType = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     EntityData = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: false),
@@ -49,9 +46,9 @@ namespace Hobbies.Infrastructure.Migrations
                 name: "UserHobbies",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    BaseHobbyId = table.Column<Guid>(type: "uuid", nullable: false),
                     HobbyId = table.Column<int>(type: "integer", nullable: false),
                     StartedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Notes = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
@@ -62,8 +59,8 @@ namespace Hobbies.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_UserHobbies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserHobbies_Hobbies_HobbyId",
-                        column: x => x.HobbyId,
+                        name: "FK_UserHobbies_Hobbies_BaseHobbyId",
+                        column: x => x.BaseHobbyId,
                         principalTable: "Hobbies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -95,9 +92,9 @@ namespace Hobbies.Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserHobbies_HobbyId",
+                name: "IX_UserHobbies_BaseHobbyId",
                 table: "UserHobbies",
-                column: "HobbyId");
+                column: "BaseHobbyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserHobbies_UserId",

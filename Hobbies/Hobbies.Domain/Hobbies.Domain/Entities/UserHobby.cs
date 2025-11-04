@@ -1,20 +1,29 @@
-// Domain/UserHobby.cs
-namespace Hobbies.Domain.Entites;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Hobbies.Domain.Common;
+using Hobbies.Domain.Entites;
 
-public class UserHobby
+namespace Hobbies.Domain.Entities;
+
+public class UserHobby: BaseEntity
 {
-    public int Id { get; set; }
-
-    // Identity service'ten gelen user referansı
-    public Guid UserId { get; set; } // sadece referans
+    [Required]
+    public Guid UserId { get; set; }
     
-    public int HobbyId { get; set; }
+    [Required]
+    public Guid BaseHobbyId { get; set; }
 
+    public int HobbyId { get; set; }
+    
     public DateTime StartedDate { get; set; } = DateTime.UtcNow;
+    
+    [MaxLength(1000)]
     public string? Notes { get; set; }
+    
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedDate { get; set; }
-
-    // Navigation - Hobby bizim DB'mizde
+    
+    [ForeignKey("HobbyId")] 
     public virtual Hobby Hobby { get; set; } = null!;
 }
+

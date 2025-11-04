@@ -2,6 +2,7 @@ using System.Security.Claims;
 using Hobbies.Application.DTOs;
 using Hobbies.Application.Interfaces;
 using Hobbies.Domain.Entites;
+using Hobbies.Domain.Entities;
 using Hobbies.Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -42,7 +43,7 @@ public class UserHobbyService : IUserHobbyService
             {
                 Id = uh.Id,
                 UserId = uh.UserId,
-                HobbyId = uh.HobbyId,
+                HobbyId = uh.BaseHobbyId,
                 HobbyName = uh.Hobby?.Name ?? string.Empty,
                 Notes = uh.Notes
             });
@@ -53,7 +54,7 @@ public class UserHobbyService : IUserHobbyService
         }
     }
 
-    public async Task<UserHobbyDto?> GetUserHobbyByIdAsync(int id)
+    public async Task<UserHobbyDto?> GetUserHobbyByIdAsync(Guid id)
     {
         try
         {
@@ -68,7 +69,7 @@ public class UserHobbyService : IUserHobbyService
             {
                 Id = userHobby.Id,
                 UserId = userHobby.UserId,
-                HobbyId = userHobby.HobbyId,
+                HobbyId = userHobby.BaseHobbyId,
                 HobbyName = userHobby.Hobby?.Name ?? string.Empty,
                 Notes = userHobby.Notes
             };
@@ -87,7 +88,7 @@ public class UserHobbyService : IUserHobbyService
             var userHobby = new UserHobby
             {
                 UserId = createDto.UserId,
-                HobbyId = createDto.HobbyId,
+                BaseHobbyId = createDto.HobbyId,
                 Notes = createDto.Notes,
                 StartedDate = createDto.StartedDate
             };
@@ -117,7 +118,7 @@ public class UserHobbyService : IUserHobbyService
             {
                 Id = userHobby.Id,
                 UserId = userHobby.UserId,
-                HobbyId = userHobby.HobbyId,
+                HobbyId = userHobby.BaseHobbyId,
                 HobbyName = hobby?.Name ?? string.Empty,
                 Notes = userHobby.Notes
             };
@@ -128,7 +129,7 @@ public class UserHobbyService : IUserHobbyService
         }
     }
 
-    public async Task<UserHobbyDto?> UpdateUserHobbyAsync(int id, UpdateUserHobbyDto updateDto)
+    public async Task<UserHobbyDto?> UpdateUserHobbyAsync(Guid id, UpdateUserHobbyDto updateDto)
     {
         try
         {
@@ -161,7 +162,7 @@ public class UserHobbyService : IUserHobbyService
             {
                 Id = userHobby.Id,
                 UserId = userHobby.UserId,
-                HobbyId = userHobby.HobbyId,
+                HobbyId = userHobby.BaseHobbyId,
                 HobbyName = userHobby.Hobby?.Name ?? string.Empty,
                 Notes = userHobby.Notes
             };
@@ -172,7 +173,7 @@ public class UserHobbyService : IUserHobbyService
         }
     }
 
-    public async Task<bool> DeleteUserHobbyAsync(int id)
+    public async Task<bool> DeleteUserHobbyAsync(Guid id)
     {
         try
         {

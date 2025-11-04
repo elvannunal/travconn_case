@@ -50,7 +50,7 @@ public class HobbyService : IHobbyService
         }
     }
 
-    public async Task<HobbyDto?> GetHobbyByIdAsync(int id)
+    public async Task<HobbyDto?> GetHobbyByIdAsync(Guid id)
     {
         try
         {
@@ -112,7 +112,7 @@ public class HobbyService : IHobbyService
         }
     }
 
-    public async Task<HobbyDto?> UpdateHobbyAsync(int id, UpdateHobbyDto updateDto)
+    public async Task<HobbyDto?> UpdateHobbyAsync(Guid id, UpdateHobbyDto updateDto)
     {
         try
         {
@@ -153,7 +153,7 @@ public class HobbyService : IHobbyService
         }
     }
 
-    public async Task<bool> DeleteHobbyAsync(int id)
+    public async Task<bool> DeleteHobbyAsync(Guid id)
     {
         try
         {
