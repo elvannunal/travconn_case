@@ -6,19 +6,27 @@ using Hobbies.Domain.Entities;
 using Hobbies.Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
 namespace Hobbies.Infrastructure.Services;
 
 public class UserHobbyService : IUserHobbyService
 {
     private readonly ApplicationDbContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly ILogApiClient _logApiClient;
+    private readonly ILogger<UserHobbyService> _logger;
 
     public UserHobbyService(
         ApplicationDbContext context, 
-        IHttpContextAccessor httpContextAccessor)
+        IHttpContextAccessor httpContextAccessor, 
+        ILogApiClient logApiClient,
+        ILogger<UserHobbyService> logger)
     {
         _context = context;
         _httpContextAccessor = httpContextAccessor;
+        _logApiClient = logApiClient;
+        _logger = logger;
     }
 
     //  Token'dan User ID al
@@ -77,42 +85,67 @@ public class UserHobbyService : IUserHobbyService
         }
     }
 
-    public async Task<UserHobbyDto> CreateUserHobbyAsync(CreateUserHobbyDto createDto)
+  public async Task<UserHobbyDto> CreateUserHobbyAsync(CreateUserHobbyDto createDto)
+{
+    try
     {
+       
+        var hobbyExists = await _context.Hobbies
+            .AsNoTracking()
+            .AnyAsync(h => h.Id == createDto.HobbyId);
+
+        if (!hobbyExists)
+        {
+            throw new Exception($"Hata: Belirtilen Hobi ID'si ({createDto.HobbyId}) bulunamadı.");
+        }
+
+        var userHobby = new UserHobby
+        {
+            UserId = createDto.UserId,
+            BaseHobbyId = createDto.HobbyId,
+            Notes = createDto.Notes,
+            StartedDate = createDto.StartedDate
+        };
+
+        _context.UserHobbies.Add(userHobby);
+        await _context.SaveChangesAsync();
+
+        var hobby = await _context.Hobbies
+            .AsNoTracking()
+            .FirstOrDefaultAsync(h => h.Id == createDto.HobbyId);
+
         try
         {
-            // UserHobby oluştur
-            var userHobby = new UserHobby
+            await _logApiClient.SendLogAsync(new CreateLogDto
             {
-                UserId = createDto.UserId,
-                BaseHobbyId = createDto.HobbyId,
-                Notes = createDto.Notes,
-                StartedDate = createDto.StartedDate
-            };
-
-            _context.UserHobbies.Add(userHobby);
-            await _context.SaveChangesAsync();
-
-            var hobby = await _context.Hobbies
-                .AsNoTracking()
-                .FirstOrDefaultAsync(h => h.Id == createDto.HobbyId);
-
-          
-
-            return new UserHobbyDto
-            {
-                Id = userHobby.Id,
-                UserId = userHobby.UserId,
-                HobbyId = userHobby.BaseHobbyId,
-                HobbyName = hobby?.Name ?? string.Empty,
-                Notes = userHobby.Notes
-            };
+                Operation = "CREATE",
+                EntityType = "UserHobby",
+                Data = createDto,
+                UserId = GetCurrentUserId()
+            });
         }
-        catch (Exception ex)
+        catch (Exception logEx)
         {
-            throw new Exception($"UserHobby oluşturulurken hata: {ex.Message}", ex);
+            _logger.LogWarning(logEx, 
+                "Harici Log API'ye (CREATE UserHobby) kayıt gönderilemedi. Hata: {ErrorMessage}", // 🚨 Log mesajı düzeltildi
+                logEx.Message);
         }
+
+        return new UserHobbyDto
+        {
+            Id = userHobby.Id,
+            UserId = userHobby.UserId,
+            HobbyId = userHobby.BaseHobbyId,
+            HobbyName = hobby?.Name ?? string.Empty,
+            Notes = userHobby.Notes
+        };
     }
+    catch (Exception ex) // Yakalanan hata değişkeni 'ex' olarak düzeltildi.
+    {
+        // DB hataları veya FK hataları burada fırlatılır.
+        throw new Exception($"UserHobby oluşturulurken hata: {ex.Message}", ex);
+    }
+}
 
     public async Task<UserHobbyDto?> UpdateUserHobbyAsync(Guid id, UpdateUserHobbyDto updateDto)
     {
@@ -129,8 +162,22 @@ public class UserHobbyService : IUserHobbyService
 
             await _context.SaveChangesAsync();
 
-          
-
+            try
+            {
+                await _logApiClient.SendLogAsync(new CreateLogDto
+                {
+                    Operation = "Update",
+                    EntityType = "Hobby",
+                    Data = updateDto,
+                    UserId = GetCurrentUserId()
+                });
+            }
+            catch (Exception logEx)
+            {
+                _logger.LogWarning(logEx, 
+                    "Harici Log API'ye (CREATE Hobby) kayıt gönderilemedi. Hata: {ErrorMessage}", 
+                    logEx.Message);
+            }
             return new UserHobbyDto
             {
                 Id = userHobby.Id,

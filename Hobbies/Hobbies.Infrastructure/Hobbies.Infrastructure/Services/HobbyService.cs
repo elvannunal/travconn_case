@@ -5,6 +5,7 @@ using Hobbies.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Hobbies.Domain.Entites;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Hobbies.Infrastructure.Services;
 
@@ -13,14 +14,19 @@ public class HobbyService : IHobbyService
     private readonly ApplicationDbContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ILogApiClient _logApiClient;
+    private readonly ILogger<HobbyService> _logger;
 
     public HobbyService(
         ApplicationDbContext applicationDb,
-        IHttpContextAccessor httpContextAccessor, ILogApiClient logApiClient)
+        IHttpContextAccessor httpContextAccessor,
+        ILogApiClient logApiClient,
+        ILogger<HobbyService> logger
+        )
     {
         _context = applicationDb;
         _httpContextAccessor = httpContextAccessor;
         _logApiClient = logApiClient;
+        _logger = logger;
     }
 
     //  Token'dan User ID'yi al
@@ -83,14 +89,23 @@ public class HobbyService : IHobbyService
             
             _context.Hobbies.Add(hobby);
             await _context.SaveChangesAsync();
-            
-            await _logApiClient.SendLogAsync(new CreateLogDto
+            try
             {
-                Operation = "CREATE",
-                EntityType = "Hobby",
-                Data = createDto, 
-                UserId = GetCurrentUserId()
-            });
+                await _logApiClient.SendLogAsync(new CreateLogDto
+                {
+                    Operation = "CREATE",
+                    EntityType = "Hobby",
+                    Data = createDto,
+                    UserId = GetCurrentUserId()
+                });
+            }
+            catch (Exception logEx)
+            {
+                _logger.LogWarning(logEx, 
+                    "Harici Log API'ye (CREATE Hobby) kayıt gönderilemedi. Hata: {ErrorMessage}", 
+                    logEx.Message);
+            }
+        
             
             return new HobbyDto
             {
@@ -117,15 +132,23 @@ public class HobbyService : IHobbyService
             hobby.Description = updateDto.Description;
 
             await _context.SaveChangesAsync();
-            
-            await _logApiClient.SendLogAsync(new CreateLogDto
+            try
             {
-                Operation = "UPDATE",
-                EntityType = "Hobby",
-                Data = updateDto, 
-                UserId = GetCurrentUserId()
-            });
-            
+                await _logApiClient.SendLogAsync(new CreateLogDto
+                {
+                    Operation = "UPDATE",
+                    EntityType = "Hobby",
+                    Data = updateDto,
+                    UserId = GetCurrentUserId()
+                });
+            }
+            catch (Exception logEx)
+            {
+                _logger.LogWarning(logEx, 
+                    "Harici Log API'ye (CREATE Hobby) kayıt gönderilemedi. Hata: {ErrorMessage}", 
+                    logEx.Message);
+            }
+
             return new HobbyDto
             {
                 Id = hobby.Id,

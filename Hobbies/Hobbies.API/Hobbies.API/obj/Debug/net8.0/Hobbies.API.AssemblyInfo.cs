@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hobbies.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f7cc8c03d34dee5bf511b4d1518cbd366d8d18d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93129e3b04d8f546e5f27b5c8d983f3e4b8ab136")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hobbies.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hobbies.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
