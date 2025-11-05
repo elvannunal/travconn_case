@@ -13,7 +13,6 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Hobby> Hobbies { get; set; }
     public DbSet<UserHobby> UserHobbies { get; set; }
-    public DbSet<Log> Logs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -35,13 +34,6 @@ public class ApplicationDbContext : DbContext
             entity.HasIndex(e => e.UserId);
             entity.HasIndex(e => e.BaseHobbyId);
         });
-        //log entity sınıfını konfigürasları
-        modelBuilder.Entity<Log>(entity =>
-        {
-            entity.HasIndex(e => e.TimeStamp);
-            entity.HasIndex(e => e.Operation);
-            entity.HasIndex(e => e.EntityType);
-            entity.HasIndex(e => e.UserId);
-        });
+       
     }
 }

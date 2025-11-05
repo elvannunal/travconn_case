@@ -11,16 +11,13 @@ namespace Hobbies.Infrastructure.Services;
 public class UserHobbyService : IUserHobbyService
 {
     private readonly ApplicationDbContext _context;
-    private readonly ILogService _logService;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
     public UserHobbyService(
         ApplicationDbContext context, 
-        ILogService logService,
         IHttpContextAccessor httpContextAccessor)
     {
         _context = context;
-        _logService = logService;
         _httpContextAccessor = httpContextAccessor;
     }
 
@@ -100,19 +97,7 @@ public class UserHobbyService : IUserHobbyService
                 .AsNoTracking()
                 .FirstOrDefaultAsync(h => h.Id == createDto.HobbyId);
 
-            try
-            {
-                await _logService.LogAsync(
-                    "Create",          
-                    "UserHobby",       
-                    userHobby,         
-                    GetCurrentUserId() 
-                );
-            }
-            catch (Exception logEx)
-            {
-                Console.WriteLine($"Log kaydedilemedi: {logEx.Message}");
-            }
+          
 
             return new UserHobbyDto
             {
@@ -144,19 +129,7 @@ public class UserHobbyService : IUserHobbyService
 
             await _context.SaveChangesAsync();
 
-            try
-            {
-                await _logService.LogAsync(
-                    "Update",          
-                    "UserHobby",        
-                    userHobby,         
-                    GetCurrentUserId() 
-                );
-            }
-            catch (Exception logEx)
-            {
-                Console.WriteLine($"Log kaydedilemedi: {logEx.Message}");
-            }
+          
 
             return new UserHobbyDto
             {

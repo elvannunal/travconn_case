@@ -14,9 +14,13 @@ public static class HobbiesServiceRegistration
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("HobbiesConnection")));
 
-        services.AddScoped<ILogService, LogService>();
         services.AddScoped<IHobbyService,HobbyService>();
         services.AddScoped<IUserHobbyService,UserHobbyService>();
+        services.AddHttpClient<ILogApiClient, LogApiClient>(client =>
+        {
+            client.BaseAddress = new Uri(configuration["LogsApiSettings:BaseUrl"] 
+                                         ?? throw new InvalidOperationException("LogsApiSettings:BaseUrl not found."));
+        });
         return services;
     }
 }

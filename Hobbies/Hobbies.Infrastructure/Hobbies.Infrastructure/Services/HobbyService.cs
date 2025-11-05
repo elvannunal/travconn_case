@@ -11,17 +11,16 @@ namespace Hobbies.Infrastructure.Services;
 public class HobbyService : IHobbyService
 {
     private readonly ApplicationDbContext _context;
-    private readonly ILogService _logService;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly ILogApiClient _logApiClient;
 
     public HobbyService(
-        ApplicationDbContext applicationDb, 
-        ILogService logService, 
-        IHttpContextAccessor httpContextAccessor)
+        ApplicationDbContext applicationDb,
+        IHttpContextAccessor httpContextAccessor, ILogApiClient logApiClient)
     {
         _context = applicationDb;
-        _logService = logService;
         _httpContextAccessor = httpContextAccessor;
+        _logApiClient = logApiClient;
     }
 
     //  Token'dan User ID'yi al
@@ -85,20 +84,14 @@ public class HobbyService : IHobbyService
             _context.Hobbies.Add(hobby);
             await _context.SaveChangesAsync();
             
-            try
+            await _logApiClient.SendLogAsync(new CreateLogDto
             {
-                await _logService.LogAsync(
-                    "Create",           
-                    "Hobby",        
-                    hobby,             
-                    GetCurrentUserId() 
-                );
-            }
-            catch (Exception logEx)
-            {
-                Console.WriteLine($"Log kaydedilemedi: {logEx.Message}");
-            }
-
+                Operation = "CREATE",
+                EntityType = "Hobby",
+                Data = createDto, 
+                UserId = GetCurrentUserId()
+            });
+            
             return new HobbyDto
             {
                 Id = hobby.Id,
@@ -125,21 +118,14 @@ public class HobbyService : IHobbyService
 
             await _context.SaveChangesAsync();
             
+            await _logApiClient.SendLogAsync(new CreateLogDto
+            {
+                Operation = "UPDATE",
+                EntityType = "Hobby",
+                Data = updateDto, 
+                UserId = GetCurrentUserId()
+            });
             
-            try
-            {
-                await _logService.LogAsync(
-                    "Update",         
-                    "Hobby",         
-                    hobby,            
-                    GetCurrentUserId() 
-                );
-            }
-            catch (Exception logEx)
-            {
-                Console.WriteLine($"Log kaydedilemedi: {logEx.Message}");
-            }
-
             return new HobbyDto
             {
                 Id = hobby.Id,

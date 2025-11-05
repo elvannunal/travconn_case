@@ -20,7 +20,7 @@ public class IdentityLogService : IIdentityLogService
     {
         _httpClient = httpClient;
         _logger = logger;
-        _logApiUrl = configuration["LogsApi:BaseUrl"] ?? "http://localhost:7003/api/logs";
+        _logApiUrl = configuration["LogsApi:BaseUrl"] ?? "http://localhost:5248/api/logs";
     }
 
     public async Task LogTokenRequestAsync(LogTokenRequestDto logDto)
