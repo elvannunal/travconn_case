@@ -1,4 +1,4 @@
-# 🚀  Microservices Solution
+# 🚀 Microservices Solution
 
 Bu proje, modern bir **.NET 8** ekosisteminde tasarlanmış, **API Gateway** ve üç temel mikroservisten (**Identity**, **Hobbies**, **Logs**) oluşan, işlevsellik ve ölçeklenebilirlik odaklı bir çözümdür.
 
@@ -6,84 +6,86 @@ Bu proje, modern bir **.NET 8** ekosisteminde tasarlanmış, **API Gateway** ve 
 
 ## 🌟 Proje Mimarisi
 
-Çözüm, temel olarak dört ana bileşenden oluşmaktadır:
+Çözüm, dört ana bileşenden oluşmaktadır:
 
 | Servis Adı | Teknoloji | Temel Sorumluluk |
 |-------------|------------|------------------|
-| **Gateway** | Ocelot / .NET 8 | API trafiğini yönetme ve Rate Limiting uygulama |
+| **Gateway** | Ocelot / .NET 8 | API trafiğini yönetmek ve Rate Limiting uygulamak |
 | **Identity** | EF Core / .NET 8 | Kullanıcı kimlik doğrulama (JWT) ve kullanıcı yönetimi |
 | **Hobbies** | EF Core / .NET 8 | Hobi ve kullanıcı-hobi ilişkisi CRUD operasyonları |
-| **Logs** | EF Core / .NET 8 | Servis işlem ve token istek loglarını toplama ve sorgulama |
+| **Logs** | EF Core / .NET 8 | Servis işlem ve token istek loglarını toplamak ve sorgulamak |
 
 ---
 
 ## ⚙️ Servis Gereksinimleri ve İşlevsellik
 
 ### 🔹 Gateway Servisi
-- API yönlendirme: Tüm gelen istekler için giriş noktası olarak görev yapar.  
-- **Rate Limiting**: Güvenlik ve kaynak yönetimi amacıyla, tüm API trafiğine 5 saniyede 2 istek kuralı uygulanacaktır.
+- API yönlendirmesi için tüm gelen istekler tek giriş noktası üzerinden yönetildi.  
+- **Rate Limiting** yapılandırması eklendi: Tüm API trafiğine 5 saniyede 2 istek kuralı uygulandı.
 
 ---
 
 ### 🔹 Identity Servisi
 
 #### Veritabanı Yapısı:
-- EF Core ile bir veritabanı kurulacak ve **IdentityDb** kullanılacaktır.  
-- Kullanıcı şifreleri hashlenerek güvenli bir şekilde saklanacaktır.
+- EF Core ile **IdentityDb** adlı bir veritabanı oluşturuldu.  
+- Kullanıcı şifreleri hash’lenerek güvenli bir şekilde saklandı.
 
 #### Kullanıcı Yönetimi:
-- `Accounts` adında bir tablo bulunacak.
-- Migration işlemi sırasında tabloya 3 adet kullanıcı eklenecektir.
+- `Accounts` tablosu oluşturuldu.  
+- Migration işlemi sırasında tabloya 3 adet başlangıç kullanıcısı eklendi.
 
 #### Kimlik Doğrulama:
-- **JWT (JSON Web Token)** mekanizması kurulacak, Authorization sağlanacaktır.  
-- Diğer API’ler token’ı doğrulayarak yetkilendirme işlemlerini yapabilecektir.  
-- Kullanıcılar için `Get Users` endpoint’i ile listeleme yapılabilecektir.
+- **JWT (JSON Web Token)** mekanizması kuruldu ve Authorization sağlandı.  
+- Diğer API’ler token’ı doğrulayarak yetkilendirme işlemlerini gerçekleştirebiliyor.  
+- Kullanıcılar için `Get Users` endpoint’i eklendi.
 
 ---
 
 ### 🔹 Hobbies Servisi
 
 #### Veritabanı Yapısı:
-- EF Core tabanlı bir veritabanı oluşturulacaktır.  
-- Tablolar:
-  - `Hobbies` tablosu  
-  - `UserHobbies` tablosu (Kullanıcı–Hobi ilişkisi)
+- EF Core tabanlı bir veritabanı kuruldu.  
+- Aşağıdaki tablolar oluşturuldu:
+  - `Hobbies`  
+  - `UserHobbies` (Kullanıcı–Hobi ilişkisi)
 
 #### CRUD Operasyonları:
-- Her iki tablo için tam CRUD (Create, Read, Update, Delete) endpoint’leri sağlanacaktır.
+- Her iki tablo için tam CRUD (Create, Read, Update, Delete) işlemleri geliştirildi.
 
 #### Loglama:
-- Create ve Update işlemleri tamamlandıktan sonra bu işlemler **Logs API**’ye yazılacaktır.
+- Create ve Update işlemleri tamamlandıktan sonra bu işlemler **Logs API**’ye gönderilerek kaydediliyor.
 
 ---
 
 ### 🔹 Logs Servisi
 
 #### Sorgulama Endpoint’i:
-Diğer servislerden gelen log kayıtlarının sorgulanabileceği bir endpoint sunulacaktır.
+- Diğer servislerden gelen log kayıtlarını sorgulamak için bir endpoint geliştirildi.
 
-Kabul edilecek parametreler:
+Kabul edilen parametreler:
 - Tarih aralığı  
-- Log tipi (`Token` ve `Hobbies` işlemlerini içerecek şekilde)
+- Log tipi (`Token` ve `Hobbies` işlemlerini kapsayacak şekilde)
 
 ---
 
 ## 🧩 Token
 
-Hobbies parametreleri ve kullanıcı doğrulama işlemleri JWT Token mekanizmasıyla yapılacaktır.
+- Hobbies parametreleri ve kullanıcı doğrulama işlemleri **JWT Token** yapısıyla gerçekleştirildi.  
+- Tüm API’lerde Authorization mekanizması entegre edildi.
 
 ---
 
 ## 🧰 Kurulum ve Çalıştırma
 
-Projenin yerel ortamda başarılı bir şekilde çalıştırılabilmesi için mikroservislerin doğru sırayla başlatılması gerekmektedir.
+Proje, yerel ortamda mikroservislerin doğru sırayla başlatılmasıyla birlikte sorunsuz bir şekilde çalışmaktadır.
 
 ### 🔧 Veritabanı Kurulumu:
-Her servisin (Identity, Hobbies, Logs) kendi veritabanı bağlantı ayarlarını yapın.
+- Her servisin (Identity, Hobbies, Logs) kendi veritabanı bağlantı ayarları yapılandırıldı.
 
-### 🧱 Migration Uygulama:
-Identity ve Hobbies projelerinde EF Core migration’larını çalıştırarak tabloları oluşturun ve Identity tablosuna başlangıç kullanıcılarını ekleyin.
+### 🧱 Migration Uygulaması:
+- Identity ve Hobbies projelerinde EF Core migration’ları çalıştırılarak tablolar oluşturuldu.  
+- Identity tablosuna başlangıç kullanıcıları eklendi.
 
 ### ▶️ Servisleri Başlatma Sırası (Bağımlılıklara göre):
 1. **Logs API**  
@@ -95,4 +97,4 @@ Identity ve Hobbies projelerinde EF Core migration’larını çalıştırarak t
 
 ## 💬 İletişim
 
-Sorularınız veya geri bildirimleriniz için lütfen iletişime geçiniz.
+Sorularınız veya geri bildirimleriniz için benimle iletişime geçebilirsiniz.
