@@ -10,10 +10,10 @@ Bu proje, modern bir **.NET 8** ekosisteminde tasarlanmış, **API Gateway** ve 
 
 | Servis Adı | Teknoloji | Temel Sorumluluk |
 |-------------|------------|------------------|
-| **Gateway** | Ocelot / .NET 8 | API trafiğini yönetmek ve Rate Limiting uygulamak |
-| **Identity** | EF Core / .NET 8 | Kullanıcı kimlik doğrulama (JWT) ve kullanıcı yönetimi |
-| **Hobbies** | EF Core / .NET 8 | Hobi ve kullanıcı-hobi ilişkisi CRUD operasyonları |
-| **Logs** | EF Core / .NET 8 | Servis işlem ve token istek loglarını toplamak ve sorgulamak |
+| **Gateway** | Ocelot / .NET 8 | API trafiğini yönetmek ve Rate Limiting uygulandı |
+| **Identity** | EF Core / .NET 8 | Kullanıcı kimlik doğrulama (JWT) ve kullanıcı yönetimi sağlandı |
+| **Hobbies** | EF Core / .NET 8 | Hobi ve kullanıcı-hobi ilişkisi CRUD operasyonları uygulandı|
+| **Logs** | EF Core / .NET 8 | Servis işlem ve token istek loglarını toplandı ve sorgulandı |
 
 ---
 
@@ -92,9 +92,3 @@ Proje, yerel ortamda mikroservislerin doğru sırayla başlatılmasıyla birlikt
 2. **Identity API**  
 3. **Hobbies API**  
 4. **Gateway API** (Tüm servisler hazır olduğunda)
-
----
-
-## 💬 İletişim
-
-Sorularınız veya geri bildirimleriniz için benimle iletişime geçebilirsiniz.
