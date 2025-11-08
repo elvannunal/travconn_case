@@ -16,24 +16,26 @@ public class UserHobbyService : IUserHobbyService
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ILogApiClient _logApiClient;
     private readonly ILogger<UserHobbyService> _logger;
+    private readonly ICurrentUserService _currentUserService;
 
     public UserHobbyService(
         ApplicationDbContext context, 
         IHttpContextAccessor httpContextAccessor, 
         ILogApiClient logApiClient,
-        ILogger<UserHobbyService> logger)
+        ILogger<UserHobbyService> logger, ICurrentUserService currentUserService)
     {
         _context = context;
         _httpContextAccessor = httpContextAccessor;
         _logApiClient = logApiClient;
         _logger = logger;
+        _currentUserService = currentUserService;
     }
 
     //  Token'dan User ID al
-    private string GetCurrentUserId()
+ /*   private string GetCurrentUserId()
     {
         return _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "Anonymous";
-    }
+    }*/
 
     public async Task<IEnumerable<UserHobbyDto>> GetAllUserHobbiesAsync()
     {
@@ -121,7 +123,7 @@ public class UserHobbyService : IUserHobbyService
                 Operation = "CREATE",
                 EntityType = "UserHobby",
                 Data = createDto,
-                UserId = GetCurrentUserId()
+                UserId = _currentUserService.UserId
             });
         }
         catch (Exception logEx)
@@ -169,7 +171,7 @@ public class UserHobbyService : IUserHobbyService
                     Operation = "Update",
                     EntityType = "Hobby",
                     Data = updateDto,
-                    UserId = GetCurrentUserId()
+                    UserId = _currentUserService.UserId
                 });
             }
             catch (Exception logEx)

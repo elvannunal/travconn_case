@@ -29,6 +29,7 @@ public class LogService: ILogService
                 EntityType = createDto.EntityType,
                 EntityData = JsonSerializer.Serialize(createDto.Data),
                 UserId = createDto.UserId,
+                IpAddress = createDto.IpAddress,
                 TimeStamp = DateTime.UtcNow
             };
 
@@ -68,6 +69,9 @@ public class LogService: ILogService
             if (!string.IsNullOrEmpty(filter.UserId))
                 query = query.Where(l => l.UserId == filter.UserId);
 
+            if (!string.IsNullOrEmpty(filter.IpAddress))
+                query = query.Where(l => l.UserId == filter.IpAddress);
+            
             return await query
                 .OrderByDescending(l => l.TimeStamp)
                 .ToListAsync();
