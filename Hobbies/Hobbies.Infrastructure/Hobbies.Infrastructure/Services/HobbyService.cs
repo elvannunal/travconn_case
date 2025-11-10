@@ -30,11 +30,6 @@ public class HobbyService : IHobbyService
         _currentUserService = currentUserService;
     }
 
-    //  Token'dan User ID'yi al
-   /** private string GetCurrentUserId()
-    {
-        return _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "Anonymous";
-    }**/
     public async Task<IEnumerable<HobbyDto>> GetAllHobbiesAsync()
     {
         try

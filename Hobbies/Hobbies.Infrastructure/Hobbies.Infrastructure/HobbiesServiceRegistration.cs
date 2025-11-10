@@ -16,6 +16,7 @@ public static class HobbiesServiceRegistration
 
         services.AddScoped<IHobbyService,HobbyService>();
         services.AddScoped<IUserHobbyService,UserHobbyService>();
+        services.AddScoped<ICurrentUserService,CurrentUserService>();
         services.AddHttpClient<ILogApiClient, LogApiClient>(client =>
         {
             client.BaseAddress = new Uri(configuration["LogsApiSettings:BaseUrl"] 
