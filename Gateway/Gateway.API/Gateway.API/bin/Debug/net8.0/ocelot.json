@@ -9,11 +9,11 @@
           "Port": 5012
         }
       ],
-      "UpstreamPathTemplate": "/api/{everything}",
+      "UpstreamPathTemplate": "/hobbies/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
       "RateLimitOptions": {
         "ClientWhitelist": [],
-        "EnableRateLimiting": true,
+        "EnableRateLimiting": false,
         "Period": "5s",
         "PeriodTimespan": 5,
         "Limit": 2
