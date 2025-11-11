@@ -13,7 +13,7 @@
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
       "RateLimitOptions": {
         "ClientWhitelist": [],
-        "EnableRateLimiting": false,
+        "EnableRateLimiting": true,
         "Period": "5s",
         "PeriodTimespan": 5,
         "Limit": 2
